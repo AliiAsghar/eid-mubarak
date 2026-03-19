@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import EidLoveCarousel from '@/components/EidLoveCarousel'
+import PersonalMemoriesCarousel from '@/components/PersonalMemoriesCarousel'
 
 export default function Home() {
   const [curtainOpen, setCurtainOpen] = useState(false)
@@ -229,8 +230,8 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                 <p className="text-white/75 font-light text-base md:text-lg">
                   A celebration made just for you
                 </p>
-                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse" suppressHydrationWarning>
-                  → Click the curtains to reveal ←
+                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse">
+                  Click the curtains to reveal
                 </p>
               </div>
             </div>
@@ -375,7 +376,7 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                 <div className="h-0.5 w-20 bg-gradient-to-l from-transparent via-yellow-300 to-transparent" />
               </div>
 
-              <h3 className="text-5xl md:text-7xl font-serif font-light text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-200 tracking-wide">
+              <h3 className="text-5xl md:text-7xl font-playfair font-light text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-200 tracking-wide">
                 Heartfelt Wishes
               </h3>
               <p className="text-yellow-200/80 text-lg font-light">for the most special person, Simeeeee</p>
@@ -383,16 +384,70 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
             </div>
 
             {/* Wishes Cards Stack */}
-            <div className="w-full max-w-2xl mx-auto space-y-4">
+            <style>{`
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              @keyframes shimmer {
+                0%, 100% {
+                  opacity: 1;
+                }
+                50% {
+                  opacity: 0.7;
+                }
+              }
+              @keyframes floatSparkle {
+                0%, 100% {
+                  transform: translateY(0px) scale(1);
+                  opacity: 1;
+                }
+                50% {
+                  transform: translateY(-8px) scale(1.1);
+                  opacity: 0.8;
+                }
+              }
+              @keyframes persistentCardGlow {
+                0%, 100% {
+                  box-shadow: 0 0 20px rgba(250, 204, 21, 0.3), 0 8px 20px rgba(250, 204, 21, 0.15);
+                }
+                50% {
+                  box-shadow: 0 0 35px rgba(250, 204, 21, 0.5), 0 12px 30px rgba(250, 204, 21, 0.25);
+                }
+              }
+              .wish-card {
+                animation: fadeInUp 0.6s ease-out forwards;
+              }
+              .wish-card:hover {
+                animation: persistentCardGlow 2s ease-in-out infinite !important;
+              }
+              .sparkle-icon {
+                animation: floatSparkle 2.5s ease-in-out infinite;
+              }
+            `}</style>
+            <div className="w-full max-w-2xl mx-auto space-y-4 relative">
+              {/* Ribbon line on the left */}
+              <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400/60 via-yellow-300/40 to-yellow-400/60"></div>
+              
               {wishes.map((wish, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 p-5 bg-white/95 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="wish-card flex items-start gap-4 p-5 bg-white/95 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-rotate-1 relative origin-center"
                 >
+                  {/* Ribbon ornament dot */}
+                  <div className="absolute -left-4 top-6 w-4 h-4 bg-yellow-400 rounded-full shadow-md border-2 border-amber-900/20"></div>
+                  
                   {/* Icon */}
                   <div className="flex-shrink-0 pt-1">
-                    <span className="text-2xl inline-flex items-center justify-center">
-                      {['💛', '✨', '🌟', '💫', '🎆', '🌺', '🎊', '💝', '🌸', '🎉'][index % 10]}
+                    <span className="sparkle-icon text-2xl inline-flex items-center justify-center">
+                      ✨
                     </span>
                   </div>
                   
@@ -425,6 +480,11 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
             </div>
           </div>
         </div>
+      )}
+
+      {/* Personal Memories Carousel */}
+      {curtainOpen && !showWishes && (
+        <PersonalMemoriesCarousel darkMode={darkMode} />
       )}
     </main>
   )

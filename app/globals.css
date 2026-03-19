@@ -3,7 +3,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@layer components {
+  .font-playfair {
+    @apply font-[family-name:var(--font-playfair)];
+  }
+  
+  .font-lora {
+    @apply font-[family-name:var(--font-lora)];
+  }
+}
+
 :root {
+  --font-playfair: 'Playfair Display', serif;
+  --font-lora: 'Lora', serif;
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.2 0 0);
   --card: oklch(1 0 0);
