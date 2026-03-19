@@ -332,6 +332,28 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
             <p className="text-white/60 font-light text-sm tracking-widest uppercase pt-2">
               Click to see heartfelt wishes
             </p>
+
+            {/* Animated Downward Arrow */}
+            <style>{`
+              @keyframes bounceDown {
+                0%, 100% {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+                50% {
+                  transform: translateY(8px);
+                  opacity: 0.6;
+                }
+              }
+              .arrow-bounce {
+                animation: bounceDown 2s ease-in-out infinite;
+              }
+            `}</style>
+            <div className="pt-6">
+              <div className="arrow-bounce text-2xl text-yellow-300 flex justify-center">
+                ↓
+              </div>
+            </div>
           </div>
         </div>
       )}
