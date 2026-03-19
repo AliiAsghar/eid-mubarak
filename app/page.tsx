@@ -231,7 +231,7 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                   A celebration made just for you
                 </p>
                 <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse">
-                  {'Click the curtains to reveal'}
+                  Click the curtains to reveal
                 </p>
               </div>
             </div>
@@ -484,7 +484,7 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
 
       {/* Personal Memories Carousel */}
       {curtainOpen && !showWishes && (
-        <PersonalMemoriesCarousel />
+        <PersonalMemoriesCarousel darkMode={darkMode} />
       )}
     </main>
   )

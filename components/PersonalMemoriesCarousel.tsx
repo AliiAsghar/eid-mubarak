@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 
 type PersonalMemoriesCarouselProps = {
   onSlideChange?: (index: number) => void
+  darkMode?: boolean
 }
 
 const MEMORIES = [
@@ -46,6 +47,7 @@ const MEMORIES = [
 
 export default function PersonalMemoriesCarousel({
   onSlideChange,
+  darkMode = false,
 }: PersonalMemoriesCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -102,7 +104,7 @@ export default function PersonalMemoriesCarousel({
   }, [emblaApi])
 
   return (
-    <section className="w-full bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950 py-8 md:py-12">
+    <section className={`w-full py-8 md:py-12 transition-colors duration-300 ${darkMode ? 'bg-gradient-to-br from-gray-800 via-gray-900 to-black' : 'bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950'}`}>
       <style>{`
         @keyframes persistentGlow {
           0%, 100% {
