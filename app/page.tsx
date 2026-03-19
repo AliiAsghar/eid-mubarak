@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import EidLoveCarousel from '@/components/EidLoveCarousel'
+import PersonalMemoriesCarousel from '@/components/PersonalMemoriesCarousel'
 
 export default function Home() {
   const [curtainOpen, setCurtainOpen] = useState(false)
@@ -229,8 +230,8 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                 <p className="text-white/75 font-light text-base md:text-lg">
                   A celebration made just for you
                 </p>
-                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse" suppressHydrationWarning>
-                  Click the curtains to reveal
+                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse">
+                  {'\u2728'} Click the curtains to reveal {'\u2728'}
                 </p>
               </div>
             </div>
@@ -402,8 +403,19 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                   opacity: 0.7;
                 }
               }
+              @keyframes glow-pulse {
+                0%, 100% {
+                  box-shadow: 0 4px 15px rgba(250, 204, 21, 0.1), 0 0 0 0 rgba(250, 204, 21, 0.1);
+                }
+                50% {
+                  box-shadow: 0 8px 25px rgba(250, 204, 21, 0.25), 0 0 0 8px rgba(250, 204, 21, 0.05);
+                }
+              }
               .wish-card {
                 animation: fadeInUp 0.6s ease-out forwards;
+              }
+              .wish-card:hover {
+                animation: glow-pulse 0.6s ease-in-out;
               }
               .sparkle-icon {
                 animation: shimmer 2s ease-in-out infinite;
@@ -417,7 +429,7 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                 <div
                   key={index}
                   style={{ animationDelay: `${index * 0.1}s` }}
-                  className="wish-card flex items-start gap-4 p-5 bg-white/95 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-x-2 relative"
+                  className="wish-card flex items-start gap-4 p-5 bg-white/95 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-rotate-1 relative origin-center"
                 >
                   {/* Ribbon ornament dot */}
                   <div className="absolute -left-4 top-6 w-4 h-4 bg-yellow-400 rounded-full shadow-md border-2 border-amber-900/20"></div>
@@ -458,6 +470,11 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
             </div>
           </div>
         </div>
+      )}
+
+      {/* Personal Memories Carousel */}
+      {curtainOpen && !showWishes && (
+        <PersonalMemoriesCarousel />
       )}
     </main>
   )
