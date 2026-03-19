@@ -102,13 +102,26 @@ export default function PersonalMemoriesCarousel({
   }, [emblaApi])
 
   return (
-    <section className="w-full bg-gradient-to-b from-amber-900 via-amber-900 to-amber-900 py-12 md:py-16">
+    <section className="w-full py-8 md:py-12">
+      <style>{`
+        @keyframes persistentGlow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.3), 0 0 40px rgba(251, 191, 36, 0.2);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.5), 0 0 60px rgba(251, 191, 36, 0.3);
+          }
+        }
+        .carousel-container:hover {
+          animation: persistentGlow 2s ease-in-out infinite;
+        }
+      `}</style>
       <div className="mx-auto max-w-3xl px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Heart className="w-5 h-5 text-amber-300 fill-amber-300" />
-            <h2 className="text-4xl md:text-5xl font-serif text-amber-100">Our Eid Memories</h2>
+            <h2 className="text-4xl md:text-5xl font-playfair font-light text-amber-100 tracking-wide">Our Eid Memories</h2>
             <Heart className="w-5 h-5 text-amber-300 fill-amber-300" />
           </div>
           <p className="text-amber-100/70 text-base md:text-lg font-light">
@@ -117,7 +130,7 @@ export default function PersonalMemoriesCarousel({
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative carousel-container rounded-2xl">
           {/* Left Arrow */}
           <button
             type="button"
@@ -136,12 +149,12 @@ export default function PersonalMemoriesCarousel({
                   key={idx}
                   className="min-w-0 grow-0 shrink-0 basis-full px-3 sm:px-6"
                 >
-                  <div className="relative h-[280px] sm:h-[350px] md:h-[420px] overflow-hidden rounded-2xl group">
+                  <div className="relative h-[300px] sm:h-[380px] md:h-[450px] overflow-hidden rounded-2xl group">
                     {/* Image */}
                     <img
                       src={memory.image}
                       alt={`Eid memory ${idx + 1}`}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     />
 
                     {/* Overlay Gradient */}

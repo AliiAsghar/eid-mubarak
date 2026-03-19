@@ -376,7 +376,7 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                 <div className="h-0.5 w-20 bg-gradient-to-l from-transparent via-yellow-300 to-transparent" />
               </div>
 
-              <h3 className="text-5xl md:text-7xl font-serif font-light text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-200 tracking-wide">
+              <h3 className="text-5xl md:text-7xl font-playfair font-light text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-200 tracking-wide">
                 Heartfelt Wishes
               </h3>
               <p className="text-yellow-200/80 text-lg font-light">for the most special person, Simeeeee</p>
@@ -403,22 +403,32 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                   opacity: 0.7;
                 }
               }
-              @keyframes glow-pulse {
+              @keyframes floatSparkle {
                 0%, 100% {
-                  box-shadow: 0 4px 15px rgba(250, 204, 21, 0.1), 0 0 0 0 rgba(250, 204, 21, 0.1);
+                  transform: translateY(0px) scale(1);
+                  opacity: 1;
                 }
                 50% {
-                  box-shadow: 0 8px 25px rgba(250, 204, 21, 0.25), 0 0 0 8px rgba(250, 204, 21, 0.05);
+                  transform: translateY(-8px) scale(1.1);
+                  opacity: 0.8;
+                }
+              }
+              @keyframes persistentCardGlow {
+                0%, 100% {
+                  box-shadow: 0 0 20px rgba(250, 204, 21, 0.3), 0 8px 20px rgba(250, 204, 21, 0.15);
+                }
+                50% {
+                  box-shadow: 0 0 35px rgba(250, 204, 21, 0.5), 0 12px 30px rgba(250, 204, 21, 0.25);
                 }
               }
               .wish-card {
                 animation: fadeInUp 0.6s ease-out forwards;
               }
               .wish-card:hover {
-                animation: glow-pulse 0.6s ease-in-out;
+                animation: persistentCardGlow 2s ease-in-out infinite !important;
               }
               .sparkle-icon {
-                animation: shimmer 2s ease-in-out infinite;
+                animation: floatSparkle 2.5s ease-in-out infinite;
               }
             `}</style>
             <div className="w-full max-w-2xl mx-auto space-y-4 relative">
