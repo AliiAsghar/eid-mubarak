@@ -229,7 +229,7 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                 <p className="text-white/75 font-light text-base md:text-lg">
                   A celebration made just for you
                 </p>
-                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse">
+                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse" suppressHydrationWarning>
                   → Click the curtains to reveal ←
                 </p>
               </div>
@@ -382,14 +382,28 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
               <p className="text-yellow-100/60 text-sm">May these words wrap around your heart</p>
             </div>
 
-            {/* Eid Love Carousel */}
-            <div className="w-full">
-              <div className="text-center space-y-2 pb-4">
-                <p className="text-yellow-200/90 font-light text-lg">Swipe through your Eid love notes</p>
-                <p className="text-yellow-100/60 text-sm">Each image has a heart message for you</p>
-              </div>
-
-              <EidLoveCarousel quotes={[eidLoveQuote, ...wishes.slice(0, 7)]} />
+            {/* Wishes Cards Stack */}
+            <div className="w-full max-w-2xl mx-auto space-y-4">
+              {wishes.map((wish, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-4 p-5 bg-white/95 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  {/* Icon */}
+                  <div className="flex-shrink-0 pt-1">
+                    <span className="text-2xl inline-flex items-center justify-center">
+                      {['💛', '✨', '🌟', '💫', '🎆', '🌺', '🎊', '💝', '🌸', '🎉'][index % 10]}
+                    </span>
+                  </div>
+                  
+                  {/* Wish Text */}
+                  <div className="flex-grow min-w-0">
+                    <p className="text-amber-900 text-base leading-relaxed">
+                      {wish}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Bottom Action */}
