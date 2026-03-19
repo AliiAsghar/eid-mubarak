@@ -229,8 +229,8 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                 <p className="text-white/75 font-light text-base md:text-lg">
                   A celebration made just for you
                 </p>
-                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse">
-                  {'> Click the curtains to reveal <'}
+                <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse" suppressHydrationWarning>
+                  Click the curtains to reveal
                 </p>
               </div>
             </div>
@@ -383,16 +383,49 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
             </div>
 
             {/* Wishes Cards Stack */}
-            <div className="w-full max-w-2xl mx-auto space-y-4">
+            <style>{`
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              @keyframes shimmer {
+                0%, 100% {
+                  opacity: 1;
+                }
+                50% {
+                  opacity: 0.7;
+                }
+              }
+              .wish-card {
+                animation: fadeInUp 0.6s ease-out forwards;
+              }
+              .sparkle-icon {
+                animation: shimmer 2s ease-in-out infinite;
+              }
+            `}</style>
+            <div className="w-full max-w-2xl mx-auto space-y-4 relative">
+              {/* Ribbon line on the left */}
+              <div className="absolute left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-400/60 via-yellow-300/40 to-yellow-400/60"></div>
+              
               {wishes.map((wish, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 p-5 bg-white/95 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="wish-card flex items-start gap-4 p-5 bg-white/95 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-x-2 relative"
                 >
+                  {/* Ribbon ornament dot */}
+                  <div className="absolute -left-4 top-6 w-4 h-4 bg-yellow-400 rounded-full shadow-md border-2 border-amber-900/20"></div>
+                  
                   {/* Icon */}
                   <div className="flex-shrink-0 pt-1">
-                    <span className="text-2xl inline-flex items-center justify-center">
-                      {['💛', '✨', '🌟', '💫', '🎆', '🌺', '🎊', '💝', '🌸', '🎉'][index % 10]}
+                    <span className="sparkle-icon text-2xl inline-flex items-center justify-center">
+                      ✨
                     </span>
                   </div>
                   
