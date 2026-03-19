@@ -231,7 +231,7 @@ May this Eid bring you endless joy, beautiful memories, and all the happiness yo
                   A celebration made just for you
                 </p>
                 <p className="text-sm md:text-base text-white/60 font-light tracking-widest uppercase animate-pulse">
-                  {'\u2728'} Click the curtains to reveal {'\u2728'}
+                  Click the curtains to reveal
                 </p>
               </div>
             </div>

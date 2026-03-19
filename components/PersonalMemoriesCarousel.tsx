@@ -75,6 +75,17 @@ export default function PersonalMemoriesCarousel({
     }
   }, [emblaApi, onSlideChange])
 
+  // Autoplay effect - 5 second interval
+  React.useEffect(() => {
+    if (!emblaApi) return
+
+    const autoplay = setInterval(() => {
+      emblaApi.scrollNext()
+    }, 5000)
+
+    return () => clearInterval(autoplay)
+  }, [emblaApi])
+
   const scrollTo = React.useCallback(
     (index: number) => {
       emblaApi?.scrollTo(index)
@@ -91,8 +102,8 @@ export default function PersonalMemoriesCarousel({
   }, [emblaApi])
 
   return (
-    <section className="w-full bg-gradient-to-b from-amber-900/20 to-transparent py-12 md:py-20">
-      <div className="mx-auto max-w-6xl px-4">
+    <section className="w-full bg-gradient-to-b from-amber-900 via-amber-900 to-amber-900 py-12 md:py-16">
+      <div className="mx-auto max-w-3xl px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-3">
@@ -125,7 +136,7 @@ export default function PersonalMemoriesCarousel({
                   key={idx}
                   className="min-w-0 grow-0 shrink-0 basis-full px-3 sm:px-6"
                 >
-                  <div className="relative h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden rounded-2xl group">
+                  <div className="relative h-[280px] sm:h-[350px] md:h-[420px] overflow-hidden rounded-2xl group">
                     {/* Image */}
                     <img
                       src={memory.image}
@@ -139,31 +150,16 @@ export default function PersonalMemoriesCarousel({
                     {/* Subtle Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-b from-amber-300/0 via-transparent to-amber-900/20" />
 
-                    {/* Content */}
-                    <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between">
-                      {/* Top Badge */}
-                      <div className="flex items-center justify-between">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 backdrop-blur px-3 py-1.5">
-                          <Heart className="w-4 h-4 text-amber-300 fill-amber-300" />
-                          <span className="text-xs md:text-sm uppercase tracking-widest text-amber-100 font-medium">
-                            Eid Memory
-                          </span>
-                        </div>
-                        <div className="text-amber-100/70 text-xs md:text-sm font-light">
-                          {idx + 1} / 8
-                        </div>
+                    {/* Top Badge */}
+                    <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex items-center justify-between z-20">
+                      <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 backdrop-blur px-3 py-1.5">
+                        <Heart className="w-4 h-4 text-amber-300 fill-amber-300" />
+                        <span className="text-xs md:text-sm uppercase tracking-widest text-amber-100 font-medium">
+                          Eid Memory
+                        </span>
                       </div>
-
-                      {/* Quote Card */}
-                      <div className="rounded-2xl bg-black/60 border border-amber-400/20 backdrop-blur-sm p-5 md:p-7 shadow-2xl transform group-hover:-translate-y-1 transition-transform duration-500">
-                        <div className="flex items-start gap-3 md:gap-4">
-                          <span className="text-3xl md:text-4xl flex-shrink-0 animate-pulse">✨</span>
-                          <div className="min-w-0">
-                            <p className="text-sm md:text-base leading-relaxed text-amber-50 font-light">
-                              {memory.quote}
-                            </p>
-                          </div>
-                        </div>
+                      <div className="text-amber-100/70 text-xs md:text-sm font-light">
+                        {idx + 1} / 8
                       </div>
                     </div>
                   </div>
@@ -181,6 +177,18 @@ export default function PersonalMemoriesCarousel({
           >
             <ArrowRight className="size-6" />
           </button>
+        </div>
+
+        {/* Quote Card Below Carousel */}
+        <div className="mt-6 md:mt-8 rounded-2xl bg-black/40 border border-amber-400/20 backdrop-blur-sm p-5 md:p-7 shadow-2xl">
+          <div className="flex items-start gap-3 md:gap-4">
+            <span className="text-2xl md:text-3xl flex-shrink-0 animate-pulse">✨</span>
+            <div className="min-w-0">
+              <p className="text-sm md:text-base leading-relaxed text-amber-50 font-light">
+                {MEMORIES[activeIndex].quote}
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Dot Indicators */}
