@@ -121,7 +121,7 @@ export default function PersonalMemoriesCarousel({
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Heart className="w-5 h-5 text-amber-300 fill-amber-300" />
-            <h2 className="text-4xl md:text-5xl font-playfair font-light text-amber-100 tracking-wide">Our Eid Memories</h2>
+            <h2 className="text-4xl md:text-5xl font-playfair font-light text-amber-100 tracking-wide">Our Memories</h2>
             <Heart className="w-5 h-5 text-amber-300 fill-amber-300" />
           </div>
           <p className="text-amber-100/70 text-base md:text-lg font-light">
