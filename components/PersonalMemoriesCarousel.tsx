@@ -102,7 +102,7 @@ export default function PersonalMemoriesCarousel({
   }, [emblaApi])
 
   return (
-    <section className="w-full py-8 md:py-12">
+    <section className="w-full bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950 py-8 md:py-12">
       <style>{`
         @keyframes persistentGlow {
           0%, 100% {
