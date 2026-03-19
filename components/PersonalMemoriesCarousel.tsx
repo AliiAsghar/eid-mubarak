@@ -168,7 +168,7 @@ export default function PersonalMemoriesCarousel({
                       <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 backdrop-blur px-3 py-1.5">
                         <Heart className="w-4 h-4 text-amber-300 fill-amber-300" />
                         <span className="text-xs md:text-sm uppercase tracking-widest text-amber-100 font-medium">
-                          Eid Memory
+                          Memory
                         </span>
                       </div>
                       <div className="text-amber-100/70 text-xs md:text-sm font-light">
